@@ -519,3 +519,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 2
+  playerBody: {fileID: 624120676}

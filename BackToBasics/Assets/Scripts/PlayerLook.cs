@@ -9,12 +9,15 @@ public class PlayerLook : MonoBehaviour {
     public float mouseSensitivity;
     float rotAmount_X;
     float rotAmount_Y;
-    Vector3 targetRot;
+    Vector3 targetRot_Cam;
+    Vector3 targetRot_Body;
+
+    public Transform playerBody;
 
     // Use this for initialization
     void Start ()
     {
-		
+        Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
@@ -26,11 +29,13 @@ public class PlayerLook : MonoBehaviour {
         rotAmount_X = mouseX * mouseSensitivity;
         rotAmount_Y = mouseY * mouseSensitivity;
 
-        targetRot = transform.rotation.eulerAngles;
+        targetRot_Cam = transform.rotation.eulerAngles;
+        targetRot_Body = playerBody.rotation.eulerAngles;
 
-        targetRot.x += rotAmount_Y;
-        targetRot.y += rotAmount_X;
+        targetRot_Cam.x -= rotAmount_Y;
+        targetRot_Body.y += rotAmount_X;
 
-        transform.rotation = Quaternion.Euler(targetRot);
+        transform.rotation = Quaternion.Euler(targetRot_Cam);
+        playerBody.rotation = Quaternion.Euler(targetRot_Body);
 	}
 }
